@@ -25,7 +25,7 @@ class ErrorHandling(object):
         @wraps(handler) #This is using the functools wraps decorator, this is a fix so that the docstrings are not hidden by the decorator
         def inner_func(self, *args, **kwargs): #Inside here all of the errors are split up and handled seperatly
             if handler.__name__ in ("get_data", "get_data_y", "get_data_x"): 
-                print(f"Handling Error, {handler.__name__}")
+                #print(f"Handling Error, {handler.__name__}")
                 try:
                     return handler(self, *args, **kwargs)  # Call the function:
                 except Exception as e:
@@ -35,7 +35,7 @@ class ErrorHandling(object):
                     print(
                         f"The most likely cause is that their is no data entered "
                         f"or the data is not numerical.\n\n")
-                    print(f"##############FULL ERROR##############\n")
+                    print(f"##############SEARCH THIS##############")
                     if printError: log.exception(f"Exception in {handler.__name__}")
                     print(f"{e}\n"
                           f"##############END ERROR##############\n\n")  # add custom messages here
@@ -46,7 +46,7 @@ class ErrorHandling(object):
                     print(
                         f"Error: Something Went Wrong in executing {handler.__name__}. Please check if you have recieved any "
                         f"warnings and adjust the code to suit. The most likely error is that their was no title name entered\n\n "
-                        f"##############FULL ERROR##############\n")
+                        f"##############SEARCH THIS##############")
                     if printError: log.exception(f"Exception in {handler.__name__}")
                     print(f"{e}\n"
                           f"##############END ERROR##############\n\n")  # add custom messages here
@@ -59,7 +59,7 @@ class ErrorHandling(object):
                         f"warnings and adjust the code to suit." 
                         f"The most likely cause is that no data has been entered. Please check if data was entered when creating the" 
                         f"Categorical object or calling the graph_bar function!"
-                        f"\n##############FULL ERROR##############\n\n")
+                        f"\n##############SEARCH THIS##############")
                     if printError: log.exception(f"Exception in {handler.__name__}")
                     print(f"{e}\n##############END ERROR##############\n\n")  # add custom messages here
             else: #This block deals with all other errors that occur that are not specified above
@@ -68,10 +68,10 @@ class ErrorHandling(object):
                 except Exception as e:
                     print(
                         f"Error: Something Went Wrong in executing {handler.__name__}. Please check if you have recieved any "
-                        f"warnings and adjust the code to suit. \n##############FULL ERROR##############\n\n")
+                        f"warnings and adjust the code to suit. \n##############SEARCH THIS##############")
                     if printError: log.exception(f"Exception in {handler.__name__}")
                     print(f"{e}\n##############END ERROR##############\n\n")  # add custom messages here
-            print("End Handelling\n")
+            #print("End Handelling\n")
         return inner_func
 
     _handle_error = staticmethod(_handle_error)
@@ -93,13 +93,13 @@ def check_data(data, name, **kwargs):
         :keyword integer: Checks if the data consists of a list of integers or is of type int
     :return: Nothing is returned
     """
-    print("Checking Data!")
+    #print("Checking Data!")
     try:
         exept = kwargs.get("exept")
 
         if kwargs.get("none"):
             if data is None:
-                print("In none")
+                #print("In none")
                 if exept:
                     print("in Exception")
                     raise Exception(
